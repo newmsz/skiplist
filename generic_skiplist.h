@@ -3,8 +3,8 @@
 * Modified version of skiplist.h
 */
 
-#ifndef __GENERIC_SKIPLIST_H
-#define __GENERIC_SKIPLIST_H
+#ifndef __GENERIC_SKIPLIST_H__
+#define __GENERIC_SKIPLIST_H__
 
 /* skiplist_node_compare_t returns:
  *      > 0 if a > b
@@ -215,9 +215,7 @@ skiplist_remove(skiplist_t* list, void* key) {
             if (list->comp(node->key, key) > 0) {
                     end = &node->link[i];
                     break;
-            }
-
-            if (list->comp(node->key, key) == 0) {
+            } else if (list->comp(node->key, key) == 0) {
                 // Here's no break statement because we allow nodes with same key.
                 __skiplist_remove_node(list, node, i + 1);
             }
